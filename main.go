@@ -1,14 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
-var num1, num2 int64
+var input string
+
+func CalcularResultado(operacao []string) int {
+	num1, _ := strconv.Atoi(operacao[0])
+	num2, _ := strconv.Atoi(operacao[2])
+	switch operacao[1] {
+	case "+":
+		return num1 + num2
+	case "-":
+		return num1 - num2
+	case "*":
+		return num1 * num2
+	case "/":
+		return num1 / num2
+	default:
+		panic("operacao invalida")
+	}
+}
 
 func main() {
-	fmt.Print("digite primeiro numero para somar:")
-	fmt.Scan(&num1)
-	fmt.Print("digite segundo numero para somar:")
-	fmt.Scan(&num2)
-	soma := num1 + num2
-	fmt.Printf("%d + %d = %d", num1, num2, soma)
+	fmt.Println("digite a operação no formato: 2*2")
+	fmt.Scan(&input)
+	operacao := strings.Split(input, "")
+	resultado := CalcularResultado(operacao)
+	fmt.Printf("%s %s %s = %d", operacao[0], operacao[1], operacao[2], resultado)
+
 }
